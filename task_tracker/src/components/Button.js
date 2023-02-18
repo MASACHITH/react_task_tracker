@@ -11,7 +11,6 @@ const Button = ({color,text,onClick}) => {
      style={{backgroundColor:color,}}
      className='btn'>{text}</button>
     </>
-   
     
    )
   

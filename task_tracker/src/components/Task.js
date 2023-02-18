@@ -1,40 +1,34 @@
 import React from 'react'
+import {FaTimes} from 'react-icons/fa'
 
 
-const task =[
-    {
-        id:1,
-        text:'Doctors apoinment',
-        day:'feb 5th at 2.30pm',
-        reminder: true,
-    },
-    {
-        id:2,
-        text:'Meeting at School',
-        day : 'feb 6th at 1.30pm',
-        reminder:true,
-    },
-    {
-        id:3,
-        text:'Food Shopping',
-        day:'feb 5th at 2.30pm',
-        reminder :false,
-    },
-   
-]
+import './Tasks';
 
-function Task() {
-
-    const [tasks,setTasks] = useState()
-
+const Task = ({task,onDelete,onToggle}) => {
+    var clickNo = 0;
+    const handleClick = event => {
+        clickNo = clickNo + 1;
+        if (clickNo === 2) {
+             onToggle(task.id);
+             clickNo = 0;
+        }
+        
+      };
+    
   return (
-
-   
-    <>
-      {task.map((task)=>(
-      <h3 key={task.id}>{task.text}</h3>
-      ))}
-    </>
+    <div className={`task ${task.reminder ? 'reminder' : ''}`} onClick={handleClick} >
+      <h3>
+        {task.text}{''}
+        <FaTimes 
+        style={{
+            color:'red',
+            cursor:"pointer"
+            }}
+            onClick={()=>onDelete(task.id)}
+            />   
+      </h3>
+      <p>{task.day}</p>
+    </div>
   )
 }
 
