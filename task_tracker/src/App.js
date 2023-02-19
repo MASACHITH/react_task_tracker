@@ -1,8 +1,12 @@
 import React from 'react'
+import { useState ,useEffect} from 'react'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
-import { useState ,useEffect} from 'react'
 import AddTask from './components/AddTask'
+import Footer from './components/Footer'
+// import About from './components/About'
+
 
 export default function App() {
 
@@ -85,6 +89,7 @@ const data =await res.json()
 
 
   return ( 
+    <Router>
     <div className=' container'>
       <>
       <Header onAdd={()=>setShowAddTask(!showAddTask)}
@@ -95,9 +100,12 @@ const data =await res.json()
           tasks={tasks} 
           onDelete={deleteTask}
           onToggle ={toggleReminder}
-          />: 'No Task to show'}
+          />: ('No Task to show')}
+          {/* <Route path='/about' component={About}/> */}
+          <Footer/>
       </> 
     </div>
+    </Router>
      
      
   )
